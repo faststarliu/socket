@@ -15,7 +15,7 @@ TCP/IP
 
 每一抽象层建立在低一层提供的服务上，并且为高一层提供服务，看起来大概是这样子的
 
-!(https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%201.png)
+![图1](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%201.png)
 
 在TCP/IP协议中两个因特网主机通过两个路由器和对应的层连接。各主机上的应用通过一些数据通道相互执行读取操作
 
