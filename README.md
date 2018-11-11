@@ -16,22 +16,20 @@ TCP/IP
 每一抽象层建立在低一层提供的服务上，并且为高一层提供服务，看起来大概是这样子的
 
 ![图1](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%201.png)
-
-在TCP/IP协议中两个因特网主机通过两个路由器和对应的层连接。各主机上的应用通过一些数据通道相互执行读取操做
-
 ![图2](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%202.png)
- 
+在TCP/IP协议中两个因特网主机通过两个路由器和对应的层连接。各主机上的应用通过一些数据通道相互执行读取操做
+![图3](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%203.png) 
 socket
 
 我们知道两个进程如果需要进行通讯最基本的一个前提能能够唯一的标示一个进程，在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，这时候我们需要另辟它径了，我们知道IP层的ip地址可以唯一标示主机，而TCP层协议和端口号可以唯一标示主机的一个进程，这样我们可以利用ip地址＋协议＋端口号唯一标示网络中的一个进程。
 
 能够唯一标示网络中的进程后，它们就可以利用socket进行通信了，什么是socket呢？我们经常把socket翻译为套接字，socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。
-
+![图4](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%204.png)
 socket起源于UNIX，在Unix一切皆文件哲学的思想下，socket是一种"打开—读/写—关闭"模式的实现，服务器和客户端各自维护一个"文件"，在建立连接打开后，可以向自己文件写入内容供对方读取或者读取对方内容，通讯结束时关闭文件。
 socket通信流程
 
 socket是"打开—读/写—关闭"模式的实现，以使用TCP协议通讯的socket为例，其交互流程大概是这样子的
-
+![图5](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%205.png)
 服务器根据地址类型（ipv4,ipv6）、socket类型、协议创建socket
 
 服务器为socket绑定ip地址和端口号
@@ -56,7 +54,7 @@ socket是"打开—读/写—关闭"模式的实现，以使用TCP协议通讯�
 
 服务器端关闭
 三次握手
-
+![图6](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%206.png)
 在TCP/IP协议中，TCP协议通过三次握手建立一个可靠的连接
 
 第一次握手：客户端尝试连接服务器，向服务器发送syn包（同步序列编号Synchronize Sequence Numbers），syn=j，客户端进入SYN_SEND状态等待服务器确认
@@ -64,7 +62,7 @@ socket是"打开—读/写—关闭"模式的实现，以使用TCP协议通讯�
 第二次握手：服务器接收客户端syn包并确认（ack=j+1），同时向客户端发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态
 
 第三次握手：第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手
-
+![图7](https://github.com/faststarliu/socket/blob/master/%E5%9B%BE%E7%89%87%207.png)
 定睛一看，服务器socket与客户端socket建立连接的部分其实就是大名鼎鼎的三次握手
 
  socket编程API
